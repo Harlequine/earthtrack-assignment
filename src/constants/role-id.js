@@ -1,7 +1,7 @@
 const roleId ={
-    ADMIN: 1,
-    AUDITOR: 2,
-    USER: 3
+    ADMIN: 'admin',
+    AUDITOR: 'auditor',
+    USER: 'user'
 };
 
 export default roleId;
