@@ -29,7 +29,7 @@ const productSchema = Joi.object({
         "string.empty": "Price is required.",
         "number.base": "Price must be a number."
     }),
-    quantity: Joi.number().integer().min(1).required().messages({
+    quantity: Joi.number().integer().required().messages({
         "string.min": "Quantity should not be below 1.",
         "string.empty": "Quantity is required.",
         "number.base": "Quantity must be a number."

@@ -25,15 +25,8 @@ const product = new Schema({
     quantity: {
         type: "number",
         required: true,
-    },
-    productImage:{
-        type: "String"
-    },
-    suffixes:{
-        type:["String"]
-    }},{
-        autoIndex:true
-    });
+    }
+});
 
     product.index({
         "productName": "text",

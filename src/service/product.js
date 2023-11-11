@@ -1,5 +1,4 @@
 import PRODUCT from '../models/product.js'
-import upload from '../middleware/upload.js';
 
 const addProduct = async(reqBody) => {
     try {
@@ -15,8 +14,8 @@ const fetchProducts = async(search, page) => {
         if(search !== ":search"){
             const data = await PRODUCT.find({
                 $or: [
-                    { productName: {$regex: search} },
-                    { description: {$regex: search} }
+                    { productName: { $regex: search, $options: "i" } },
+                    { description: { $regex: search, $options: "i" } }
                 ]
             }).limit(2).skip(paginate);
             return data
