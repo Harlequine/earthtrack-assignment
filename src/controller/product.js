@@ -18,7 +18,7 @@ const addProduct = async(req, res) => {
         const { error, value } = productValidator(req.body)
 
         if(error)
-            return res.json({...ERROR_MESSAGES.PRODUCT_ERROR_VALIDATION, message: [...error.message.split(' .')]})
+            return res.json({...ERROR_MESSAGES.PRODUCT_ERROR_VALIDATION, message: [...error.message.split('. ')]})
 
         await productService.addProduct(req.body);
         
@@ -34,8 +34,8 @@ const addProduct = async(req, res) => {
 
 const fetchProducts = async(req, res) => {
     try {
-        const { search, page } = req.params
-
+        const { search, page } = req.query
+        
         const data = await productService.fetchProducts(search, page);
 
         if(data.length === 0){
@@ -55,7 +55,7 @@ const editProduct = async(req, res) => {
             return res.json(ERROR_MESSAGES.ERROR_UNAUTHORIZED_ACCESS)
         }
 
-        const { name } = req.params;
+        const { name } = req.query;
 
         const { error, value } = updateProductValidator(req.body)
 
@@ -83,7 +83,7 @@ const deleteProduct = async(req,res) => {
             return res.json(ERROR_MESSAGES.ERROR_UNAUTHORIZED_ACCESS)
         }
 
-        const { name } = req.params;
+        const { name } = req.query;
 
         const data = await productService.deleteProduct(name);
 

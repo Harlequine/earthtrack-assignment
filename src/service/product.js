@@ -10,18 +10,19 @@ const addProduct = async(reqBody) => {
 
 const fetchProducts = async(search, page) => {
     try {
-        const paginate = (page - 1) * 2;
+        
+        const paginate = (page - 1) * 10;
         if(search !== ":search"){
             const data = await PRODUCT.find({
                 $or: [
                     { productName: { $regex: search, $options: "i" } },
                     { description: { $regex: search, $options: "i" } }
                 ]
-            }).limit(2).skip(paginate);
+            }).limit(10).skip(paginate);
             return data
         }
         else{
-            const data = await PRODUCT.find().limit(2).skip(paginate);
+            const data = await PRODUCT.find().limit(10).skip(paginate);
             return data;
         }
     } catch (error) {
